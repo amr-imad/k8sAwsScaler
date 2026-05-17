@@ -1,9 +1,18 @@
 import express from "express";
+import client from "prom-client";
 
 const app = express();
+const register = new client.Registry();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+
+client.collectDefaultMetrics({ register });
+
+app.get("/metrics", async (req, res) => {
+  res.setHeader("Content-Type", register.contentType);
+  res.send(await register.metrics());
+});
 
 app.get("/", (req, res) => {
   res.send(`
@@ -21,6 +30,6 @@ app.get("/", (req, res) => {
   `);
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
