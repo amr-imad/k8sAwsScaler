@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8sAwsScalerDeployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8sAwsScaler
+  template:
+    metadata:
+      labels:
+        app: k8sAwsScaler
+    spec:
+      containers:
+        - name: express-api
+          image: express-api
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: "3000"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "100Mi"
+            limits:
+              cpu: "200m"
+              memory: "200Mi"

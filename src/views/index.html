@@ -14,7 +14,7 @@
           Segoe UI,
           Roboto,
           Arial;
-        background: radial-gradient(circle at top, #0f172a, #020617);
+        background: var(--bg);
         color: #e2e8f0;
         height: 100vh;
         display: flex;
@@ -69,7 +69,7 @@
     </style>
   </head>
 
-  <body>
+  <body style="--bg: {{theme}};">
     <div class="card">
       <div class="badge">SYSTEM ONLINE</div>
 

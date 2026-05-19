@@ -6,7 +6,7 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "node --watch src/server.js"
+    "dev": "sudo node --watch --env-file .env src/server.js"
   },
   "dependencies": {
     "express": "^4.18.2",
